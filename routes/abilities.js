@@ -12,11 +12,13 @@ router.get("/", (req, res) => {
 router.get('/:id', (req, res, next) => {
     const abilityId = parseInt(req.params.id); 
     const ability = abilities.find(ability => ability.id == abilityId); 
-    // if (!ability) { 
-    //     return res.status(404).json({ error: 'Ability not found' });
-    // }
-   if (ability) res.json(ability);
-   else next()
+    if (!ability) { 
+        const err = new Error('Avenger not found');
+        err.status = 404;
+        return next(err);
+    }
+   
+    res.json(ability);
 });
 
 // --------------------------[Post]
@@ -36,13 +38,13 @@ router.delete("/:id", (req, res, next) => {
 
     });
 
-    if (ability) {
-        res.json(ability);
-    } 
-    else next()
-    // {
-    //    res.status(404).json({ error: "Avenger not found" });
-    // }
+    if (!ability) { 
+        const err = new Error('Avenger not found');
+        err.status = 404;
+        return next(err);
+    }
+   
+    res.json(ability);
 })
 
 module.exports = router;

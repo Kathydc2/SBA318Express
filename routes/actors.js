@@ -12,13 +12,13 @@ router.get("/", (req, res) => {
 router.get('/:id', (req, res, next) => {
     const actorId = parseInt(req.params.id); 
     const actor = actors.find(actor => actor.id == actorId); 
-    // if (!actor) { 
-    //     return res.status(404).json({ error: 'Actor not found' });
-    // }
-    if (actor) {
-        res.json(actor);
+    if (!actor) { 
+        const err = new Error('Avenger not found');
+        err.status = 404;
+        return next(err);
     }
-    else next()
+   
+    res.json(actor);
 });
 
 // --------------------------[Post]
@@ -37,14 +37,13 @@ router.delete("/:id", (req, res, next) => {
         }
 
     });
-
-    if (actor) {
-        res.json(actor);
-    } 
-    else next()
-    // else {
-    //     res.status(404).json({ error: "Avenger not found" });
-    // }
+    if (!actor) { 
+        const err = new Error('Avenger not found');
+        err.status = 404;
+        return next(err);
+    }
+   
+    res.json(actor);
 })
 
 module.exports = router;

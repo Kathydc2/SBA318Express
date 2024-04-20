@@ -8,7 +8,7 @@ const avengers = require("../data/avengers");
 //  tradition to use res.json but you can also use res.send
 
 router.get("/",(req, res) => {
-    // console.log(avengers)
+    console.log(avengers)
     res.json(avengers)
 });
 
@@ -20,13 +20,15 @@ router.get("/",(req, res) => {
 router.get('/:id', (req, res, next) => {
     const avengerId = parseInt(req.params.id); 
     const avenger = avengers.find(avenger => avenger.id == avengerId); 
-    // if (!avenger) { 
-    //     return res.status(404).json({ error: 'Avenger not found' });
-    // }
-    if (avenger) {
-        res.json(avenger);
+    if (!avenger) { 
+        const err = new Error('Avenger not found');
+        err.status = 404;
+        return next(err);
     }
-    else next()
+    console.log(avenger)
+
+    res.json(avenger);
+  
 });
 
 // --------------------------[Post]
@@ -47,13 +49,13 @@ router.patch("/:id", (req, res, next) => {
         }
     });
 
-    if (avenger) {
-        res.json(avenger);
+    if (!avenger) { 
+        const err = new Error('Avenger not found');
+        err.status = 404;
+        return next(err);
     }
-    else next()
-    // else {
-    //     res.status(404).json({ error: "Avenger not found" });
-    // }
+   
+    res.json(avenger);
 });
 
 // ---------------------------[Delete]
@@ -66,13 +68,13 @@ router.delete("/:id", (req, res, next) => {
 
     });
 
-    if (avenger) {
-        res.json(avenger);
-    } 
-    else next()
-    // else {
-    //     res.status(404).json({ error: "Avenger not found" });
-    // }
+    if (!avenger) { 
+        const err = new Error('Avenger not found');
+        err.status = 404;
+        return next(err);
+    }
+   
+    res.json(avenger);
 })
 
 module.exports = router;
