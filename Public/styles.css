@@ -18,17 +18,25 @@ body {
     height: 100%;
     
 }
-
+.images {
+    display: flex;
+    justify-content: space-evenly;
+    height: 40vh;
+}
 table {
     width: 80%;
     margin: 0 auto;
     border-collapse: collapse;
 }
+thead{
+    font-size: 16pt;
+  
+}
 
 tbody{
     font-family: Arial, sans-serif;
     font-size: 12pt;
-    font-weight: 500;
+    font-weight: bold;
 }
 th, td {
     padding: 10px;
@@ -37,9 +45,10 @@ th, td {
 }
 
 th {
-    background-color: white;
+    background-color: burlywood;
 }
 
 tr:hover {
     background-color: white;
 }
+

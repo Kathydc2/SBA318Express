@@ -13,23 +13,28 @@ app.set('view engine', 'ejs');
 
 // function for all the data
 function joinAvengerData(avengers, abilities, actors) {
-  return avengers.map(avenger => {
+  const avengersWithDetails = [];
+  avengers.forEach(avenger => {
     const ability = abilities.find(item => item.avenger === avenger.avenger);
     const actor = actors.find(item => item.avenger === avenger.avenger);
-    return {
+    avengersWithDetails.push({
       avenger: avenger.avenger,
+      picture: avenger.picture,
       Name: avenger.name,
       abilities: ability ? ability.abilities : {},
-      actor: actor ? actor.actor : {}
-      };
+      actor: actor ? actor.actor : {},
+      zodiacSign: actor ? actor.zodiacSigns : ""
+    });
   });
-};
+  return avengersWithDetails;
+}
 
 // Route handler for displaying avengers with their abilities and actors
 app.get('/avengers/view', (req, res) => {
   const avengersWithDetails = joinAvengerData(avengers, abilities, actors);
   res.render('avengers', { avengersWithDetails });
 });
+
 
 // -------[Custom logger middleware]
 const loggerMiddleware = (req, res, next) => {
