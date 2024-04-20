@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const abilities = require("../data/abilities");
+const abilities = require("../Data/abilities");
+const fs = require('fs');
 
 // ------------------------------------[GET]
 router.get("/", (req, res) => {

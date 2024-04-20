@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const avengers = require("../data/avengers");
-
+const avengers = require("../Data/avengers");
 
 // ------------------------------------[GET]
 //  tradition to use "api"

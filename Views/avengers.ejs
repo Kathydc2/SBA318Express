@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avengers</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="nav">
+        <img src="https://i.pinimg.com/originals/23/26/c5/2326c5a4ded3fcdf3c80ad237ab46b3f.jpg">
+    </div>
+    
+    <div class="avengerInfoContainer">
+    <table>
+        <thead>
+            <tr>
+                <th>Avenger</th>
+                <th>Name</th>
+                <th>Abilities</th>
+                <th>Actor</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <% avengersWithDetails.forEach(avenger => { %>
+                <tr>
+                    <td><%= avenger.avenger %></td>
+                    <td><%= avenger.Name %></td>
+                    <td>
+                        <% for (const key in avenger.abilities) { %>
+                            <p><%= avenger.abilities[key] %></p>
+                        <% } %>
+                    </td>
+                    <td><%= avenger.actor %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+<!--Type "!" to get this template-->
+<!--Here's what each tag represents in EJS:
+
+<% %>: This is the standard EJS tag for embedding JavaScript code. Anything within these tags is executed as JavaScript code on the server side before the HTML is rendered and sent to the client.
+<%= %>: This tag is used to output the result of a JavaScript expression directly into the HTML. It's commonly used to insert dynamic values, such as variables or function return values, into the HTML markup.
+<%- %>: Similar to <%= %>, this tag also outputs the result of a JavaScript expression into the HTML. However, it performs HTML escaping to prevent XSS (Cross-Site Scripting) attacks by converting characters like <, >, &, etc., into their corresponding HTML entities.-->
+
+
+

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const actors = require("../data/actors");
+const actors = require("../Data/actors");
 
 // ------------------------------------[GET]
 router.get("/", (req, res) => {
